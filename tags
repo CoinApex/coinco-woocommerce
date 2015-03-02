@@ -1,0 +1,51 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+action_name	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^            $action_name = 'woocommerce_update_options_payment_gateways_' . $this->id;$/;"	v	language:PHP
+add_refund_address_checkout_field	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^        public function add_refund_address_checkout_field($fields) {$/;"	f	language:PHP
+body	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^            $body = json_decode(wp_remote_retrieve_body($resp), true);$/;"	v	language:PHP
+check_requirements	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^        public function check_requirements() {$/;"	f	language:PHP
+coinco_add_gateway	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^    function coinco_add_gateway($methods) {$/;"	f	language:PHP
+coinco_callback	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^        public function coinco_callback() {$/;"	f	language:PHP
+data	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^            $data = json_decode($_POST['callbackData'], true);$/;"	v	language:PHP
+deactivate	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^    function deactivate() {$/;"	f	language:PHP
+debug	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^            $this->debug = $this->get_option('debug', 'no') === 'yes';$/;"	v	language:PHP
+defined	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^ * screen. An Action is a custom PHP function defined in your plugin (or theme)$/;"	f	language:PHP
+description	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^            $this->description        = $this->get_option('description');$/;"	v	language:PHP
+enabled	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^            $this->enabled = ($this->check_requirements())? 'yes':'no';$/;"	v	language:PHP
+errors	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^    $errors = array();$/;"	v	language:PHP
+file	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^    foreach (get_plugins() as $file => $plugin)$/;"	v	language:PHP
+form_fields	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^            $this->form_fields = array($/;"	v	language:PHP
+form_fields	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^        *      $this->form_fields = array($/;"	v	language:PHP
+generate_custom_field_html	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^        *  public function generate_custom_field_html() {$/;"	f	language:PHP
+has_fields	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^            $this->has_fields         = false;$/;"	v	language:PHP
+icon	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^            $this->icon               = plugin_dir_url(__FILE__).'assets\/img\/icon.png';$/;"	v	language:PHP
+id	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^            $this->id                 = 'coinco';$/;"	v	language:PHP
+init_form_fields	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^        *  public function init_form_fields() {$/;"	f	language:PHP
+init_form_fields	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^        public function init_form_fields() {$/;"	f	language:PHP
+is_coinco_plugin	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^    function is_coinco_plugin($file, $plugin) {$/;"	f	language:PHP
+json_post	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^        public function json_post($url, $params) {$/;"	f	language:PHP
+log	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^        public function log($message) {$/;"	f	language:PHP
+logger	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^            $this->logger = new WC_Logger();$/;"	v	language:PHP
+method_description	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^            $this->method_description = 'Coin.co allows you to accept bitcoin on your WooCommerce store.';$/;"	v	language:PHP
+method_title	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^            $this->method_title       = 'Coin.co';$/;"	v	language:PHP
+msg	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^                $msg = $msg . $body['message'] . '<\/br>';$/;"	v	language:PHP
+msg	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^                $msg = 'Could not create invoice with Coin.Co. They say:<\/br>';$/;"	v	language:PHP
+order	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^            $order = wc_get_order($data['id']);$/;"	v	language:PHP
+order	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^            $order = wc_get_order($order_id);$/;"	v	language:PHP
+order_button_text	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^            $this->order_button_text  = __('Proceed to Coinco', 'coinco');$/;"	v	language:PHP
+process_payment	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^        public function process_payment($order_id) {$/;"	f	language:PHP
+resp	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^            $resp = $this->json_post($url, array($/;"	v	language:PHP
+setup_payment_gateway_stuff	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^        public function setup_payment_gateway_stuff() {$/;"	f	language:PHP
+setup_settings_api_stuff	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^        public function setup_settings_api_stuff() {$/;"	f	language:PHP
+title	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^            $this->title              = $this->get_option('title');$/;"	v	language:PHP
+to	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^            \/\/ can always attach another function to this event.$/;"	f	language:PHP
+to	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^\/\/ Register a function to run when the plugin is activated.$/;"	f	language:PHP
+url	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^            $url = 'https:\/\/sandbox.coin.co\/1\/createInvoice';$/;"	v	language:PHP
+WC_Gateway_Coinco	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^    class WC_Gateway_Coinco extends WC_Payment_Gateway {$/;"	c	language:PHP
+WC_Payment_Gateway	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^    * The class WC_Payment_Gateway extends WC_Settings_API$/;"	c	language:PHP
+WC_Settings_API	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^    * class WC_Settings_API has a bunch of helper functions to deal with this$/;"	c	language:PHP
+woocommerce_coinco_activate	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^function woocommerce_coinco_activate() {$/;"	f	language:PHP
+woocommerce_coinco_check_requirements	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^function woocommerce_coinco_check_requirements() {$/;"	f	language:PHP
+woocommerce_coinco_deactivate	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^function woocommerce_coinco_deactivate() {$/;"	f	language:PHP
+woocommerce_coinco_init_gateway_class	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^function woocommerce_coinco_init_gateway_class() {$/;"	f	language:PHP
+woocommerce_coinco_load	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^function woocommerce_coinco_load() {$/;"	f	language:PHP
+__construct	/Users/ale/Source/PHP/wordpress-heroku/wp-content/plugins/coinco/class-wc-gateway-coinco.php	/^        public function __construct() {$/;"	f	language:PHP

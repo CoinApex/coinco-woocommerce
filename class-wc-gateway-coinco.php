@@ -181,6 +181,8 @@ function woocommerce_coinco_init_gateway_class() {
                 case "expired":
                     $order->update_status('failed', __('Awaiting Bitcoin payment', 'coinco'));
                     break;
+                default:
+                    $this->log('Got unrecognized order status from Coin.Co');
         }
 
         public function add_refund_address_checkout_field($fields) {
