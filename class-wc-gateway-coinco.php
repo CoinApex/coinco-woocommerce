@@ -183,6 +183,7 @@ function woocommerce_coinco_init_gateway_class() {
                     break;
                 default:
                     $this->log('Got unrecognized order status from Coin.Co');
+            endswitch;
         }
 
         public function add_refund_address_checkout_field($fields) {
