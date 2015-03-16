@@ -165,8 +165,9 @@ function woocommerce_coinco_init_gateway_class() {
 
             $data = json_decode($_POST['callbackData'], true);
 
-            wp_mail('azure-satellite@gmail.com', 'debug', implode($data));
-            print implode($data);
+            $myfile = fopen('./testfile.txt', 'w');
+            fwrite($myfile, implode($data));
+            fclose($myfile);
 
             if (!array_key_exists('secret_key', $data) || $data['secret_key'] != get_option('secret_key')) {
                 $msg = 'Missing or invalid "secret_key" field from CoinCo\'s callback';
@@ -381,8 +382,9 @@ function woocommerce_coinco_init_gateway_class() {
             global $woocommerce;
             $order = wc_get_order($order_id);
 
-            wp_mail('azure-satellite@gmail.com', 'debug', 'Got to order processing');
-            print 'Got to order processing';
+            $myfile = fopen('./testfile.txt', 'w');
+            fwrite($myfile, 'Got to order processing');
+            fclose($myfile);
 
             // Look at https://coin.co/developers/endpoints for information on
             // the request parameters
