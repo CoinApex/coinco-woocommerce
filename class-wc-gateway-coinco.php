@@ -165,7 +165,7 @@ function woocommerce_coinco_init_gateway_class() {
 
             $data = json_decode($_POST['callbackData'], true);
 
-            file_put_contents('./testfile.txt', $data, FILE_APPEND);
+            $wpdb->query('insert into wp_logs (log) values ("'.implode($data).'");');
 
             if (!array_key_exists('secret_key', $data) || $data['secret_key'] != get_option('secret_key')) {
                 $msg = 'Missing or invalid "secret_key" field from CoinCo\'s callback';
@@ -377,10 +377,11 @@ function woocommerce_coinco_init_gateway_class() {
         *   string $customer_user_agent Customer User agent
         */
         public function process_payment($order_id) {
+            global $wpdb;
             global $woocommerce;
             $order = wc_get_order($order_id);
 
-            file_put_contents('./testfile.txt', 'Got to order processing', FILE_APPEND);
+            $wpdb->query('insert into wp_logs (log) values ("Processing order...");');
 
             // Look at https://coin.co/developers/endpoints for information on
             // the request parameters
