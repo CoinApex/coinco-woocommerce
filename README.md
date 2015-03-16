@@ -13,7 +13,19 @@ Please note that this plugin currently only works with USD.
 
 #### Installation Guide
 
-Look at http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
+1. Download the latest version of this plugin from `https://github.com/CoinApex/coinco-woocommerce/releases`
+2. Go to `<your domain name here>/wp-admin/plugin-install.php` and click `Upload plugin`. Choose the previously downloaded file (you do not have to decompress it).
+
+#### Settings
+
+1. Go to WooCommerce's settings under `<your domain name here>/wp-admin`. Make sure currency is set to dollars under the 'General' settings tab. Coin.Co does not support other currencies.
+
+2. Go to `https://coin.co/developers/authentication` for instructions on how to generate API keys for your merchant account.
+
+3. Under the 'Checkout' tab with there should be a link to Coin.co's settings at the top. Click on it and paste the generated API Key from step (2) into the API Key field.
+
+4. Sell your heart out!
+
 
 #### How It Works
  
