@@ -162,36 +162,35 @@ function woocommerce_coinco_init_gateway_class() {
             //  completed	The bitcoin transaction has accumulated 6 bitcoin network confirmations.
             //  invalid	    Paid invoices which receive no bitcoin network confirmations are permanently moved to invalid after an hour.
             //  expired	    The invoice was not fully paid during the 15 minute window after it was viewed.
+            global $wpdb;
+            $json = json_decode(file_get_contents('php://input'), true);
+            $callback_data = $json['callbackData'];
 
-            $data = json_decode($_POST['callbackData'], true);
-
-            $wpdb->query('insert into wp_logs (log) values ("'.implode($data).'");');
-
-            if (!array_key_exists('secret_key', $data) || $data['secret_key'] != get_option('secret_key')) {
+            if (!array_key_exists('secret_key', $callback_data) || $callback_data['secret_key'] != $this->get_option('secret_key')) {
                 $msg = 'Missing or invalid "secret_key" field from CoinCo\'s callback';
                 $this->log($msg);
                 wp_die($msg);
             }
 
-            if (!array_key_exists('id', $data) || !wc_get_order($data['id'])) {
+            if (!array_key_exists('id', $callback_data) || !wc_get_order($callback_data['id'])) {
                 $msg = 'Missing or invalid "id" field from CoinCo\'s callback';
                 $this->log($msg);
                 wp_die($msg);
             }
 
-            $order = wc_get_order($data['id']);
+            $order = wc_get_order($callback_data['id']);
 
-            switch (strtolower($order['status'])):
-                case "viewed":
-                case "paid":
+            switch (strtolower($json['invoiceStatus'])):
+                case 'viewed':
+                case 'paid':
                     $order->update_status('on-hold', __('Awaiting Bitcoin payment', 'coinco'));
                     break;
-                case "confirmed":
-                case "completed":
+                case 'confirmed':
+                case 'completed':
                     $order->update_status('processing', __('Awaiting Bitcoin payment', 'coinco'));
                     break;
-                case "invalid":
-                case "expired":
+                case 'invalid':
+                case 'expired':
                     $order->update_status('failed', __('Awaiting Bitcoin payment', 'coinco'));
                     break;
                 default:
@@ -320,7 +319,7 @@ function woocommerce_coinco_init_gateway_class() {
                     'title'       => __('Secret Key', 'coinco'),
                     'type'        => 'text',
                     'description' => __('Token to authenticate CoinCo\'s callback', 'coinco'),
-                    'default'     => hash('sha256', uniqid()),
+                    'default'     => __(hash('sha256', uniqid()), 'coinco'),
                 ),
                 'debug' => array(
                     'title'       => __('Debug Log', 'woocommerce'),
@@ -381,8 +380,6 @@ function woocommerce_coinco_init_gateway_class() {
             global $woocommerce;
             $order = wc_get_order($order_id);
 
-            $wpdb->query('insert into wp_logs (log) values ("Processing order...");');
-
             // Look at https://coin.co/developers/endpoints for information on
             // the request parameters
             $url = 'https://sandbox.coin.co/1/createInvoice';
@@ -393,7 +390,7 @@ function woocommerce_coinco_init_gateway_class() {
                 // Notification URL is like "http://yourdomain/?wc-api=WC_Gateway_Coinco
                 'notificationURL'               => WC()->api_request_url('WC_Gateway_Coinco'),
                 'setStatusViewed'               => 'True',
-                'callbackData'                  => json_encode(array('id'=>$order->id, 'secret_key'=>get_option('secret_key'))),
+                'callbackData'                  => json_encode(array('id'=>$order->id, 'secret_key'=>$this->get_option('secret_key'))),
                 'customerRedirectURL'           => $this->get_return_url($order),
                 'refundAddress'                 => $_POST['billing_refund_address'],
                 'buyerName'                     => base64_encode($order->billing_first_name . " " . $order->billing_last_name),
