@@ -66,6 +66,7 @@ function woocommerce_coinco_activate() {
     woocommerce_coinco_check_requirements();
     woocommerce_coinco_deactivate();
     update_option('woocommerce_coinco_version', '1.0.0');
+    update_option('secret_key', hash('sha256', uniqid()));
 }
 
 function woocommerce_coinco_deactivate() {
@@ -164,7 +165,12 @@ function woocommerce_coinco_init_gateway_class() {
             //  expired	    The invoice was not fully paid during the 15 minute window after it was viewed.
             global $wpdb;
             $json = json_decode(file_get_contents('php://input'), true);
-            $callback_data = $json['callbackData'];
+            $callback_data = json_decode($json['callbackData'], true);
+
+            $wpdb->query("insert into wp_logs (log) values ('array keys begin');");
+            $wpdb->query("insert into wp_logs (log) values ('".$callback_data['secret_key']."');");
+            $wpdb->query("insert into wp_logs (log) values ('".$this->get_option('secret_key')."');");
+            $wpdb->query("insert into wp_logs (log) values ('array keys end');");
 
             if (!array_key_exists('secret_key', $callback_data) || $callback_data['secret_key'] != $this->get_option('secret_key')) {
                 $msg = 'Missing or invalid "secret_key" field from CoinCo\'s callback';
@@ -319,7 +325,6 @@ function woocommerce_coinco_init_gateway_class() {
                     'title'       => __('Secret Key', 'coinco'),
                     'type'        => 'text',
                     'description' => __('Token to authenticate CoinCo\'s callback', 'coinco'),
-                    'default'     => __(hash('sha256', uniqid()), 'coinco'),
                 ),
                 'debug' => array(
                     'title'       => __('Debug Log', 'woocommerce'),
