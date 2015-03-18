@@ -95,7 +95,7 @@ function woocommerce_coinco_check_requirements() {
     if (version_compare($wp_version, '3.9', '<'))
         $errors[] = 'Your WordPress version is too old. The Coin.co payment plugin requires Wordpress 3.9 or higher to function.';
 
-    if (version_compare(WOOCOMMERCE_VERSION, '2.2', '<'))
+    if (version_compare(WOOCOMMERCE_VERSION, '2.2', '>'))
         $errors[] = 'Your WooCommerce version is too old. The Coin.co payment plugin requires WooCommerce 2.2 or higher to function.';
 
     if ($errors)
