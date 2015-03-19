@@ -66,6 +66,7 @@ function woocommerce_coinco_activate() {
     woocommerce_coinco_check_requirements();
     woocommerce_coinco_deactivate();
     update_option('woocommerce_coinco_version', '1.0.0');
+    update_option('secret_key', hash('sha256', uniqid()));
 }
 
 function woocommerce_coinco_deactivate() {
@@ -137,8 +138,6 @@ function woocommerce_coinco_init_gateway_class() {
             $this->setup_settings_api_stuff();
             $this->setup_payment_gateway_stuff();
             $this->logger = new WC_Logger();
-            if (!$this->get_option('secret_key'))
-                $this->update_option('secret_key', hash('sha256', uniqid()));
             add_filter('woocommerce_checkout_fields', array($this, 'add_refund_address_checkout_field'));
             // Any requests to "http://yourdomain/?wc-api=WC_Gateway_Coinco"
             // will trigger this action.
@@ -326,12 +325,13 @@ function woocommerce_coinco_init_gateway_class() {
                     'title'       => __('Secret Key', 'coinco'),
                     'type'        => 'text',
                     'description' => __('Token to authenticate CoinCo\'s callback', 'coinco'),
+                    'default'     => get_option('secret_key'),
                 ),
-                'environment' => array(
-                    'title'       => __('Environment', 'coinco'),
-                    'type'        => 'text',
+                'testing' => array(
+                    'title'       => __('Use test.net coins?', 'coinco'),
+                    'type'        => 'checkbox',
                     'description' => __('For testing purposes only', 'coinco'),
-                    'default'     => 'production',
+                    'default'     => 'no',
                 ),
                 'debug' => array(
                     'title'       => __('Debug Log', 'woocommerce'),
@@ -392,11 +392,10 @@ function woocommerce_coinco_init_gateway_class() {
             global $woocommerce;
             $order = wc_get_order($order_id);
 
-            $environment = $this->get_option('environment');
-            if ($environment == 'production')
-                $url = 'https://coin.co/1/createInvoice';
+            if ($this->get_option('testing'))
+                $url = 'https://sandbox.coin.co/1/createInvoice';
             else
-                $url = 'https://'.$environment.'.coin.co/1/createInvoice';
+                $url = 'https://coin.co/1/createInvoice';
 
             // Look at https://coin.co/developers/endpoints for information on
             // the request parameters
