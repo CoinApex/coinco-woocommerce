@@ -5,7 +5,7 @@
  *  Description:       Enable your WooCommerce store to accept Bitcoin with CoinCo.
  *  Author:            Coin.co
  *  Author URI:        https://coin.co
- *  Version:           1.0.0
+ *  Version:           1.1.0
  *  License:           Copyright 2011-2014 coinco Inc., MIT License
  */
 
@@ -65,7 +65,7 @@ register_activation_hook(__FILE__, 'woocommerce_coinco_activate');
 function woocommerce_coinco_activate() {
     woocommerce_coinco_check_requirements();
     woocommerce_coinco_deactivate();
-    update_option('woocommerce_coinco_version', '1.0.0');
+    update_option('woocommerce_coinco_version', '1.1.0');
     update_option('secret_key', hash('sha256', uniqid()));
 }
 
@@ -319,16 +319,16 @@ function woocommerce_coinco_init_gateway_class() {
                 'api_key' => array(
                     'title'       => __('API Key', 'coinco'),
                     'type'        => 'text',
-                    'description' => __('API Key generated in the CoinCo merchant account', 'coinco'),
+                    'description' => __('Generate this key through your merchant account\'s page in Coin.Co\'s site.', 'coinco'),
                 ),
                 'secret_key' => array(
                     'title'       => __('Secret Key', 'coinco'),
                     'type'        => 'text',
-                    'description' => __('Token to authenticate CoinCo\'s callback', 'coinco'),
+                    'description' => __('Token to authenticate CoinCo\'s payment notifications. Any long, random string will work. Normally this field does not need to be changed.', 'coinco'),
                     'default'     => get_option('secret_key'),
                 ),
                 'testing' => array(
-                    'title'       => __('Use test.net coins?', 'coinco'),
+                    'title'       => __('Use testnet coins?', 'coinco'),
                     'type'        => 'checkbox',
                     'description' => __('For testing purposes only', 'coinco'),
                     'default'     => 'no',
