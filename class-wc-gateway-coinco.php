@@ -392,10 +392,10 @@ function woocommerce_coinco_init_gateway_class() {
             global $woocommerce;
             $order = wc_get_order($order_id);
 
-            if ($this->get_option('testing'))
-                $url = 'https://sandbox.coin.co/1/createInvoice';
-            else
+            if ($this->get_option('testing') == 'no')
                 $url = 'https://coin.co/1/createInvoice';
+            else
+                $url = 'https://sandbox.coin.co/1/createInvoice';
 
             // Look at https://coin.co/developers/endpoints for information on
             // the request parameters
